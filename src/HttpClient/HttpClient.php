@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Log;
 class HttpClient
 {
     protected $timeout = 60;
+    protected $encodeURL = false;
+
+    public function encodeURL($status = false)
+    {
+        if ($status == true) {
+            $this->encodeURL = true;
+        }
+    }
 
     public function request($method = 'GET', $url, $header = array(), $params = array())
     {
@@ -18,7 +26,14 @@ class HttpClient
         $ch = curl_init();
         $payload = json_encode($params);
 
-        if ($method == 'POST') {
+        if ($method == 'POST' && $this->encodeURL == true) {
+            $request_string = "";
+            foreach ($params as $key => $value) {
+                $request_string .= $key . '=' . rawurlencode($value) . '&';
+            }
+            curl_setopt($ch, CURLOPT_POST, count($params));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $request_string);
+        } else if ($method == 'POST' && $this->encodeURL == false) {
             curl_setopt($ch, CURLOPT_POST, count($params));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
             $header['Content-Length'] = strlen($payload);

@@ -2,12 +2,14 @@
 
 namespace LoveyCom\CashFree;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use LoveyCom\CashFree\HttpClient\HttpClient;
 use LoveyCom\CashFree\Util\Singleton;
 
-class CashFree extends Singleton
+class CashFree
 {
 
     public static $testURL;
@@ -38,17 +40,17 @@ class CashFree extends Singleton
 
     private static $token;
 
-    // public static function getInstance()
-    // {
-    //     // Check is $_instance has been set
-    //     if (!isset(self::$instance)) {
-    //         // Creates sets object to instance
-    //         self::$instance = new CashFree();
-    //     }
+    public static function getInstance()
+    {
+        // Check is $_instance has been set
+        if (!isset(self::$instance)) {
+            // Creates sets object to instance
+            self::$instance = new CashFree();
+        }
 
-    //     // Returns the instance
-    //     return self::$instance;
-    // }
+        // Returns the instance
+        return self::$instance;
+    }
 
     /**
      * @param string Uses the values set in the config.
@@ -147,25 +149,43 @@ class CashFree extends Singleton
         return self::$isProduction;
     }
 
+    public static function locallyVerify()
+    {
+        if (Storage::disk('local')->exists('cashfree.txt')) {
+            $content = json_decode(Storage::get('cashfree.txt'));
+            $expiry = Carbon::createFromTimestamp($content->expiry);
+            //Log::notice(Carbon::now());
+            if ($expiry > Carbon::now()) {
+                return $content->token;
+            }
+            return null;
+        }
+    }
+
     public static function authenticate()
     {
-        $client = new HttpClient();
-        $header = [
-            'X-Client-Id: ' . self::getAppID(),
-            'X-Client-Secret: ' . self::getSecretKey()
-        ];
+        if (self::locallyVerify() == null) {
+            $client = new HttpClient();
+            $header = [
+                'X-Client-Id: ' . self::getAppID(),
+                'X-Client-Secret: ' . self::getSecretKey()
+            ];
 
-        if (self::getIsProduction()) {
-            $url = Config::get('cashfree.prodURL', 'https://ces-api.cashfree.com') . "/ces/v1/authorize";
+            if (self::getIsProduction()) {
+                $url = Config::get('cashfree.prodURL', 'https://ces-api.cashfree.com') . "/ces/v1/authorize";
+            } else {
+                $url = Config::get('cashfree.testURL', 'https://ces-gamma.cashfree.com') . "/ces/v1/authorize";
+            }
+
+            Log::info('Authenticating.....');
+            $response = $client->request('POST', $url, $header);
+            //dd($response);
+            if (isset($response->status) && $response->status == "SUCCESS") {
+                self::$token = $response->data->token;
+                Storage::disk('local')->put('cashfree.txt', json_encode(['token' => $response->data->token, 'expiry' => $response->data->expiry]));
+            }
         } else {
-            $url = Config::get('cashfree.testURL', 'https://ces-gamma.cashfree.com') . "/ces/v1/authorize";
-        }
-
-        Log::info('Authenticating.....');
-        $response = $client->request('POST', $url, $header);
-        //dd($response);
-        if (isset($response->status) && $response->status == "SUCCESS") {
-            self::$token = $response->data->token;
+            self::$token = self::locallyVerify();
         }
         return self::$token;
     }
@@ -184,6 +204,7 @@ class CashFree extends Singleton
         }
 
         Log::info('Verifying Token.....');
+        //Log::notice($header);
         $response = $client->request('POST', $url, $header);
         if ($response->status == "SUCCESS" && $response->message == "Token is valid") {
             return true;
