@@ -14,5 +14,6 @@ return [
         'secretKey' => '',
         'testURL' => 'https://test.cashfree.com/',
         'prodURL' => 'https://api.cashfree.com/',
+        'isLive' => false
     ]
 ];

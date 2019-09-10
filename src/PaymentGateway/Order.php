@@ -6,7 +6,18 @@ use LoveyCom\CashFree\HttpClient\HttpClient;
 
 class Order extends PaymentGatewayBase
 {
+    /**
+     * This is an array of data to be sent to the server
+     *
+     * @var array
+     */
     protected $params;
+
+    /**
+     * This is an array of headers to be sent to the server
+     *
+     * @var array
+     */
     protected $header;
 
     public function __construct()
@@ -18,9 +29,20 @@ class Order extends PaymentGatewayBase
         $this->params = ["appId" => PaymentGatewayBase::getAppID(), "secretKey" => PaymentGatewayBase::getSecretKey()];
     }
 
+    /**
+     * Create an order
+     *
+     * @param array $order
+     * @return object
+     */
     public function create($order)
     {
-        $apiEndpoint = PaymentGatewayBase::getTestURL();
+        if (PaymentGatewayBase::isProduction()) {
+            $apiEndpoint = PaymentGatewayBase::geProdURL();
+        } else {
+            $apiEndpoint = PaymentGatewayBase::getTestURL();
+        }
+
         $url = $apiEndpoint . "/api/v1/order/create";
 
         $this->params = array_merge($this->params, $order);
@@ -43,9 +65,19 @@ class Order extends PaymentGatewayBase
         // }
     }
 
+    /**
+     * Get payment link for an already created order
+     *
+     * @param string $orderId
+     * @return object
+     */
     public function getLink($orderId)
     {
-        $apiEndpoint = PaymentGatewayBase::getTestURL();
+        if (PaymentGatewayBase::isProduction()) {
+            $apiEndpoint = PaymentGatewayBase::geProdURL();
+        } else {
+            $apiEndpoint = PaymentGatewayBase::getTestURL();
+        }
         $url = $apiEndpoint . "/api/v1/order/info/link";
 
         $this->params['orderId'] = $orderId;
@@ -57,9 +89,19 @@ class Order extends PaymentGatewayBase
         return $response;
     }
 
+    /**
+     * Get an order details
+     *
+     * @param string $orderId
+     * @return object
+     */
     public function getDetails($orderId)
     {
-        $apiEndpoint = PaymentGatewayBase::getTestURL();
+        if (PaymentGatewayBase::isProduction()) {
+            $apiEndpoint = PaymentGatewayBase::geProdURL();
+        } else {
+            $apiEndpoint = PaymentGatewayBase::getTestURL();
+        }
         $url = $apiEndpoint . "/api/v1/order/info/";
 
         $this->params['orderId'] = $orderId;
@@ -71,9 +113,19 @@ class Order extends PaymentGatewayBase
         return $response;
     }
 
+    /**
+     * Get the status of an order
+     *
+     * @param string $orderId
+     * @return object
+     */
     public function getStatus($orderId)
     {
-        $apiEndpoint = PaymentGatewayBase::getTestURL();
+        if (PaymentGatewayBase::isProduction()) {
+            $apiEndpoint = PaymentGatewayBase::geProdURL();
+        } else {
+            $apiEndpoint = PaymentGatewayBase::getTestURL();
+        }
         $url = $apiEndpoint . "/api/v1/order/info/status";
 
         $this->params['orderId'] = $orderId;
