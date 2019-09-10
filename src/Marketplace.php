@@ -4,6 +4,7 @@ namespace LoveyCom\CashFree;
 
 use Illuminate\Support\Facades\Config;
 use LoveyCom\CashFree\HttpClient\HttpClient;
+use LoveyCom\CashFree\Util\ActivityLogger;
 
 class Marketplace
 {
@@ -47,6 +48,8 @@ class Marketplace
             return $response;
         }
 
+        ActivityLogger::Log(2, "Check Balance Request Failed: ", (array) $response, __FILE__);
+
         return (object) [];
     }
 
@@ -74,6 +77,8 @@ class Marketplace
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Withdraw Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }
@@ -106,6 +111,8 @@ class Marketplace
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Get Ledger Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }

@@ -3,6 +3,7 @@
 namespace LoveyCom\CashFree\PaymentGateway;
 
 use LoveyCom\CashFree\HttpClient\HttpClient;
+use LoveyCom\CashFree\Util\ActivityLogger;
 
 class Order extends PaymentGatewayBase
 {
@@ -51,6 +52,9 @@ class Order extends PaymentGatewayBase
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
 
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Creating New Order Failed: ", (array) $response, __FILE__);
+
         return $response;
 
         // if ($response->status == "OK") {
@@ -86,6 +90,9 @@ class Order extends PaymentGatewayBase
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
 
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Getting Order Link Failed: ", (array) $response, __FILE__);
+
         return $response;
     }
 
@@ -110,6 +117,9 @@ class Order extends PaymentGatewayBase
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
 
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Getting Order Details Failed: ", (array) $response, __FILE__);
+
         return $response;
     }
 
@@ -133,6 +143,9 @@ class Order extends PaymentGatewayBase
         $client = new HttpClient();
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
+
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Checking Order Status Failed: ", (array) $response, __FILE__);
 
         return $response;
     }

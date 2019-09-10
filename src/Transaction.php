@@ -5,6 +5,7 @@ namespace LoveyCom\CashFree;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use LoveyCom\CashFree\HttpClient\HttpClient;
+use LoveyCom\CashFree\Util\ActivityLogger;
 
 class Transaction
 {
@@ -56,6 +57,8 @@ class Transaction
             return $response;
         }
 
+        ActivityLogger::Log(2, "Import Transaction Request Failed: ", (array) $response, __FILE__);
+
         return (object) [];
     }
 
@@ -87,6 +90,8 @@ class Transaction
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Retreive Transaction Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }
@@ -125,6 +130,8 @@ class Transaction
             return $response;
         }
 
+        ActivityLogger::Log(2, "Attach Vendor Request Failed: ", (array) $response, __FILE__);
+
         return (object) [];
     }
 
@@ -153,6 +160,8 @@ class Transaction
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Detach Vendor from Transaction Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }

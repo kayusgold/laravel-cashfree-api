@@ -177,7 +177,7 @@ class CashFree
                 $url = Config::get('cashfree.testURL', 'https://ces-gamma.cashfree.com') . "/ces/v1/authorize";
             }
 
-            Log::info('Authenticating.....');
+            //Log::info('Authenticating.....');
             $response = $client->request('POST', $url, $header);
             //dd($response);
             if (isset($response->status) && $response->status == "SUCCESS") {

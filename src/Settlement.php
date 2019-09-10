@@ -3,6 +3,7 @@
 namespace LoveyCom\CashFree;
 
 use LoveyCom\CashFree\HttpClient\HttpClient;
+use LoveyCom\CashFree\Util\ActivityLogger;
 
 /**
  * This class enables us to check the settlement status of orders
@@ -53,6 +54,8 @@ class Settlement
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Get Settlement Status Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }

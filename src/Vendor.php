@@ -4,6 +4,7 @@ namespace LoveyCom\CashFree;
 
 use LoveyCom\CashFree\HttpClient\HttpClient;
 use Illuminate\Support\Facades\Config;
+use LoveyCom\CashFree\Util\ActivityLogger;
 
 class Vendor
 {
@@ -142,6 +143,8 @@ class Vendor
             return $response;
         }
 
+        ActivityLogger::Log(2, "Adjust Vendor Balance Request Failed: ", (array) $response, __FILE__);
+
         return (object) [];
     }
 
@@ -171,6 +174,8 @@ class Vendor
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Vendor Payout Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }
@@ -202,6 +207,8 @@ class Vendor
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Get Vendor Ledger Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }
@@ -247,9 +254,20 @@ class Vendor
             return $response;
         }
 
+        ActivityLogger::Log(2, "Get Transfer Details Request Failed: ", (array) $response, __FILE__);
+
         return (object) [];
     }
 
+    /**
+     * Transfer from one vendor to another
+     *
+     * @param string $fromVendorId
+     * @param string $toVendorId
+     * @param string $amount
+     * @param string $adjustmentId
+     * @return object
+     */
     public function transferBetweenVendors($fromVendorId, $toVendorId, $amount, $adjustmentId)
     {
         $client = new HttpClient();
@@ -267,6 +285,8 @@ class Vendor
         if ($response->status == "SUCCESS") {
             return $response;
         }
+
+        ActivityLogger::Log(2, "Check Balance Request Failed: ", (array) $response, __FILE__);
 
         return (object) [];
     }
