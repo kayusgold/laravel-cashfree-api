@@ -25,7 +25,24 @@ Using the package, but you're stuck? Found a bug? Have a question or suggestion 
 composer require loveycom/cashfree
 ```
 
-2. Open 
+2. Open Config/app.php and add the following to the providers array:
+```
+LoveyCom\CashFree\CashFreeServiceProvider::class,
+```
+
+3. Run the command below to publish the package config file config/cashfree.php:
+```
+php artisan vendor:publish
+```
+
+4. Open config/cashfree.php to edit neccessary parameters such as API Key ID and Secret Key.
+```
+    'appID' => '',
+    'secretKey' => '',
+    'testURL' => 'https://ces-gamma.cashfree.com',
+    'prodURL' => 'https://ces-api.cashfree.com',
+    'maxReturn' => 100,
+```
 
 ## Contributing
 
