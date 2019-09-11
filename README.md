@@ -42,6 +42,7 @@ php artisan vendor:publish
     'testURL' => 'https://ces-gamma.cashfree.com',
     'prodURL' => 'https://ces-api.cashfree.com',
     'maxReturn' => 100,
+    'isLive' => false,
 ```
 
 Do not forget to dump composer autoload
@@ -54,22 +55,15 @@ composer dump-autoload
 Thank you for your interest, here are some of the many ways to contribute.
 
 - Check out our [contributing guide](/.github/CONTRIBUTING.md)
-- Look at our [code of conduct](/.github/CODE_OF_CONDUCT.md)
 
 ## Security
 
-If you discover any security related issues, please email help@cartalyst.com instead of using the issue tracker.
+If you discover any security related issues, please email info@plustech.com.ng instead of using the issue tracker.
 
 ## License
 
-This software is released under the [BSD 3-Clause](LICENSE) License.
+This software is released under the [MIT](LICENSE) License.
 
-[link-docs]:      https://cartalyst.com/manual/stripe-laravel
-[link-travis]:    https://travis-ci.org/cartalyst/stripe-laravel
-[link-license]:   https://opensource.org/licenses/MIT
-[link-packagist]: https://packagist.org/packages/cartalyst/stripe-laravel
+[link-packagist]: https://packagist.org/packages/loveycom/cashfree
 
-[icon-travis]:    https://travis-ci.org/cartalyst/stripe-laravel.svg?branch=11.0
-[icon-license]:   https://poser.pugx.org/cartalyst/stripe-laravel/license
-[icon-version]:   https://poser.pugx.org/cartalyst/stripe-laravel/version
-[icon-downloads]: https://poser.pugx.org/cartalyst/stripe-laravel/downloads
+
