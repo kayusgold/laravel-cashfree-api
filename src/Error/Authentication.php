@@ -2,5 +2,5 @@
 
 namespace LoveyCom\CashFree\Error;
 
-class Api extends Base
+class Authentication extends Base
 { }
