@@ -44,6 +44,11 @@ php artisan vendor:publish
     'maxReturn' => 100,
 ```
 
+Do not forget to dump composer autoload
+```
+composer dump-autoload
+```
+
 ## Contributing
 
 Thank you for your interest, here are some of the many ways to contribute.

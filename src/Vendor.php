@@ -96,10 +96,17 @@ class Vendor
             return $response;
         }
 
+        ActivityLogger::Log(2, "Retreiving Vendor Details Failed: ", (array) $response, __FILE__);
+
         return (object) [];
     }
 
-
+    /**
+     * Check Vendor Creation Status
+     *
+     * @param string $vendorId
+     * @return object
+     */
     public function checkStatus($vendorId)
     {
         $vendor = $this->retreive($vendorId);

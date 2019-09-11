@@ -7,6 +7,7 @@ return [
     'testURL' => 'https://ces-gamma.cashfree.com',
     'prodURL' => 'https://ces-api.cashfree.com',
     'maxReturn' => 100, //this is for request pagination
+    'isLive' => false,
 
     //For the PaymentGateway.
     'PG' => [

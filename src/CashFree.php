@@ -146,6 +146,7 @@ class CashFree
 
     public static function getIsProduction()
     {
+        self::$isProduction = Config::get('cashfree.isLive', false);
         return self::$isProduction;
     }
 
