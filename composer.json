@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": "^7.3",
-        "illuminate/support": "5.6.*",
+        "illuminate/support": "5.7.*|5.8.*|5.9.*|6.*",
         "nesbot/carbon": "2.24.0"
     },
     "license": "MIT",
