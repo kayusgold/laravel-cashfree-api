@@ -20,9 +20,9 @@ Using the package, but you're stuck? Found a bug? Have a question or suggestion 
 
 ## Installation
 
-1. To use LoveyCom CashFree package, require it in your project using composer:
+1. To use LoveyCom CashFree package, add it to your project using composer:
 ```
-composer require loveycom\cashfree
+composer require loveycom/cashfree
 ```
 
 2. Open 
