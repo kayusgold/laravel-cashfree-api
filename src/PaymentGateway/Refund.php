@@ -2,6 +2,8 @@
 
 namespace LoveyCom\CashFree\PaymentGateway;
 
+use LoveyCom\CashFree\Util\ActivityLogger;
+
 class Refund extends PaymentGatewayBase
 {
     /**
@@ -53,6 +55,9 @@ class Refund extends PaymentGatewayBase
         $client = new HttpClient();
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
+
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Creating Refund Failed: ", (array) $response, __FILE__);
 
         return $response;
     }
@@ -120,6 +125,9 @@ class Refund extends PaymentGatewayBase
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
 
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Creating Instant Refund Failed: ", (array) $response, __FILE__);
+
         return $response;
     }
 
@@ -151,6 +159,9 @@ class Refund extends PaymentGatewayBase
         $client = new HttpClient();
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
+
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Fetching Refund Transactions Failed: ", (array) $response, __FILE__);
 
         return $response;
     }

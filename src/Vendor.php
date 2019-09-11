@@ -92,13 +92,11 @@ class Vendor
 
         $response = $client->request('GET', $url, $this->header);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Retreiving Vendor Details Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Retreiving Vendor Details Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -146,13 +144,11 @@ class Vendor
 
         //dd($response);
 
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Adjust Vendor Balance Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Adjust Vendor Balance Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -178,13 +174,11 @@ class Vendor
 
         //dd($response);
 
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Vendor Payout Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Vendor Payout Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -211,13 +205,11 @@ class Vendor
 
         $response = $client->request('GET', $url, $this->header);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Get Vendor Ledger Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Get Vendor Ledger Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -252,18 +244,16 @@ class Vendor
             if ($endDate != "")
                 $url .= "&endDate=$endDate";
         } else {
-            return (object) [];
+            return (object) ['status' => 'ERROR', 'message' => 'Required parameters were not set. Please read documentation.'];
         }
 
         $response = $client->request('GET', $url, $this->header);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Get Transfer Details Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Get Transfer Details Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -289,12 +279,10 @@ class Vendor
 
         $response = $client->request('POST', $url, $this->header, $params);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Check Balance Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Check Balance Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 }

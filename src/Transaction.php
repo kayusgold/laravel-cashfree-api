@@ -53,13 +53,11 @@ class Transaction
 
         $response = $client->request('POST', $url, $this->header, $params);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Import Transaction Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Import Transaction Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -87,13 +85,11 @@ class Transaction
 
         $response = $client->request('GET', $url, $this->header);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Retreive Transaction Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Retreive Transaction Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -126,13 +122,11 @@ class Transaction
 
         $response = $client->request('POST', $url, $this->header, $params);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Attach Vendor Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Attach Vendor Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -157,12 +151,10 @@ class Transaction
 
         $response = $client->request('POST', $url, $this->header, $params);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Detach Vendor from Transaction Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Detach Vendor from Transaction Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 }

@@ -56,6 +56,9 @@ class Transaction extends PaymentGatewayBase
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
 
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Getting All Transactions Failed: ", (array) $response, __FILE__);
+
         return $response;
     }
 }

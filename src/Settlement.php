@@ -51,12 +51,10 @@ class Settlement
 
         $response = $client->request('GET', $url, $this->header);
 
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Get Settlement Status Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Get Settlement Status Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 }

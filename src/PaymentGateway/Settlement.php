@@ -56,6 +56,9 @@ class Settlement extends PaymentGatewayBase
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
 
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Getting All Settlement Failed: ", (array) $response, __FILE__);
+
         return $response;
     }
 
@@ -79,6 +82,9 @@ class Settlement extends PaymentGatewayBase
         $client = new HttpClient();
         $client->encodeURL(true);
         $response = $client->request('POST', $url, $this->header, $this->params);
+
+        if ($response->status == 'ERROR')
+            ActivityLogger::Log(2, "Fetching Settlement Failed: ", (array) $response, __FILE__);
 
         return $response;
     }

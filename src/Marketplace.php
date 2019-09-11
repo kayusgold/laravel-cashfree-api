@@ -44,13 +44,11 @@ class Marketplace
 
         $response = $client->request('GET', $url, $this->header);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Check Balance Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Check Balance Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -74,13 +72,11 @@ class Marketplace
 
         $response = $client->request('POST', $url, $this->header, $params);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Withdraw Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Withdraw Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 
     /**
@@ -108,12 +104,10 @@ class Marketplace
 
         $response = $client->request('GET', $url, $this->header);
         //dd($response);
-        if ($response->status == "SUCCESS") {
-            return $response;
+        if ($response->status != "SUCCESS") {
+            ActivityLogger::Log(2, "Get Ledger Request Failed: ", (array) $response, __FILE__);
         }
 
-        ActivityLogger::Log(2, "Get Ledger Request Failed: ", (array) $response, __FILE__);
-
-        return (object) [];
+        return $response;
     }
 }
