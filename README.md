@@ -64,6 +64,12 @@ If you discover any security related issues, please email info@plustech.com.ng i
 
 This software is released under the [MIT](LICENSE) License.
 
-[link-packagist]: https://packagist.org/packages/loveycom/cashfree
+[link-docs]:      https://cartalyst.com/manual/stripe-laravel
+[link-travis]:    https://travis-ci.org/cartalyst/stripe-laravel
+[link-license]:   https://opensource.org/licenses/MIT
+[link-packagist]: https://packagist.org/packages/cartalyst/stripe-laravel
 
-
+[icon-travis]:    https://travis-ci.org/cartalyst/stripe-laravel.svg?branch=11.0
+[icon-license]:   https://poser.pugx.org/cartalyst/stripe-laravel/license
+[icon-version]:   https://poser.pugx.org/cartalyst/stripe-laravel/version
+[icon-downloads]: https://poser.pugx.org/cartalyst/stripe-laravel/downloads
