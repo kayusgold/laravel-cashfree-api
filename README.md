@@ -1,9 +1,11 @@
 # CashFree Payment Gateway Laravel Package
 
-[![Build Status][icon-travis]][link-travis]
-[![Software License][icon-license]][link-license]
-[![Latest Version on Packagist][icon-version]][link-packagist]
-[![Total Downloads][icon-downloads]][link-packagist]
+[![Issues](https://img.shields.io/github/issues/kayusgold/laravel-cashfree-api?style=flat-square)](https://github.com/)
+[![Stars](https://img.shields.io/github/stars/kayusgold/laravel-cashfree-api?style=flat-square)](https://github.com/)
+[![Forks](https://img.shields.io/github/forks/kayusgold/laravel-cashfree-api?style=flat-square)](https://github.com/)
+[![License](https://img.shields.io/github/license/kayusgold/laravel-cashfree-api?style=flat-square)](https://github.com/)
+
+
 
 An open source package by [kayusgold](https://plustech.com.ng) for [CashFree](https://cashfree.com), an Indian payment gateway.
 
@@ -64,12 +66,4 @@ If you discover any security related issues, please email info@plustech.com.ng i
 
 This software is released under the [MIT](LICENSE) License.
 
-[link-docs]:      https://cartalyst.com/manual/stripe-laravel
-[link-travis]:    https://travis-ci.org/cartalyst/stripe-laravel
-[link-license]:   https://opensource.org/licenses/MIT
-[link-packagist]: https://packagist.org/packages/cartalyst/stripe-laravel
 
-[icon-travis]:    https://travis-ci.org/cartalyst/stripe-laravel.svg?branch=11.0
-[icon-license]:   https://poser.pugx.org/cartalyst/stripe-laravel/license
-[icon-version]:   https://poser.pugx.org/cartalyst/stripe-laravel/version
-[icon-downloads]: https://poser.pugx.org/cartalyst/stripe-laravel/downloads
