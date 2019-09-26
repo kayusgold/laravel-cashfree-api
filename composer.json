@@ -3,7 +3,7 @@
     "description": "A package for CashFree Payment Gateway.",
     "type": "library",
     "require": {
-        "nesbot/carbon": "2.*"
+        "nesbot/carbon": "^1.*"
     },
     "license": "MIT",
     "authors": [
