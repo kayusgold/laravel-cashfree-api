@@ -3,7 +3,7 @@
     "description": "A package for CashFree Payment Gateway.",
     "type": "library",
     "require": {
-        "php": "^7.3",
+        "php": "^7.0",
         "illuminate/support": "5.7.*|5.8.*|5.9.*|6.*",
         "nesbot/carbon": "2.*"
     },

@@ -17,8 +17,8 @@ Using the package, but you're stuck? Found a bug? Have a question or suggestion 
 
 ## Requirements 
 
-1. PHP >= 7.3.*
-2. Laravel >= 5.8.*
+1. PHP >= 7.0.*
+2. Laravel >= 5.6.*
 
 ## Installation
 
