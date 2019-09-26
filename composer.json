@@ -2,9 +2,7 @@
     "name": "loveycom/cashfree",
     "description": "A package for CashFree Payment Gateway.",
     "type": "library",
-    "require": {
-        "nesbot/carbon": "^1.*"
-    },
+    "require": {},
     "license": "MIT",
     "authors": [
         {
