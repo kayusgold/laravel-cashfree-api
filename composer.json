@@ -3,8 +3,6 @@
     "description": "A package for CashFree Payment Gateway.",
     "type": "library",
     "require": {
-        "php": "^7.0",
-        "illuminate/support": "4.*|5.*|^6.*",
         "nesbot/carbon": "2.*"
     },
     "license": "MIT",
