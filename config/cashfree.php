@@ -13,8 +13,8 @@ return [
     'PG' => [
         'appID' => '',
         'secretKey' => '',
-        'testURL' => 'https://test.cashfree.com/',
-        'prodURL' => 'https://api.cashfree.com/',
+        'testURL' => 'https://test.cashfree.com',
+        'prodURL' => 'https://api.cashfree.com',
         'isLive' => false
     ]
 ];
