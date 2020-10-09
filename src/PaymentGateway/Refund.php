@@ -41,7 +41,7 @@ class Refund extends PaymentGatewayBase
     public function create($orderId, $referenceId, $amount, $remark = "")
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
@@ -81,7 +81,7 @@ class Refund extends PaymentGatewayBase
         $error = 0;
         $error_message = [];
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
@@ -143,7 +143,7 @@ class Refund extends PaymentGatewayBase
     public function retreive($startDate, $endDate, $lastId = "", $count = "")
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }

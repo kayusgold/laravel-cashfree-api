@@ -39,7 +39,7 @@ class Order extends PaymentGatewayBase
     public function create($order)
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
@@ -78,7 +78,7 @@ class Order extends PaymentGatewayBase
     public function getLink($orderId)
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
@@ -105,7 +105,7 @@ class Order extends PaymentGatewayBase
     public function getDetails($orderId)
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
@@ -132,7 +132,7 @@ class Order extends PaymentGatewayBase
     public function getStatus($orderId)
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }

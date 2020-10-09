@@ -40,7 +40,7 @@ class Transaction extends PaymentGatewayBase
     public function retreive($startDate = "", $endDate = "", $txStatus = "", $lastID = "", $count = "")
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }

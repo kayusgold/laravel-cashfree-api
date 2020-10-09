@@ -39,7 +39,7 @@ class Settlement extends PaymentGatewayBase
     public function getAll($startDate, $endDate, $lastId = "", $count = "")
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
@@ -71,7 +71,7 @@ class Settlement extends PaymentGatewayBase
     public function getOne($settlementId)
     {
         if (PaymentGatewayBase::isProduction()) {
-            $apiEndpoint = PaymentGatewayBase::geProdURL();
+            $apiEndpoint = PaymentGatewayBase::getProdURL();
         } else {
             $apiEndpoint = PaymentGatewayBase::getTestURL();
         }
